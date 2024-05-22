@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <script src="https://kit.fontawesome.com/16c9aedfa1.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap');
+
+        *
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins",sans-serif;
+        }
+        body
+        {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f3f5f9;
+        }
+        .container
+        {
+            width: 420px;
+            background-color: transparent;
+            color: #fff;
+            border-radius: 10px;
+            padding: 30px 40px;
+
+        }
+        .container h1
+        {
+            font-family: "Merienda", cursive;
+            font-optical-sizing: auto;
+            font-style: normal;
+            text-align: center;
+            color: #623ce6;
+            
+        }
+        .container .input_box
+        {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin: 30px 0;
+        }
+        .container input
+        {
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            border: none;
+            outline: none;
+            box-shadow: 0 0 2px 0 rgba(48, 48, 48, 0.1), 0 4px 4px 0 rgba(48, 48, 48, 0.1);
+            border-radius: 40px;
+            font-size: 16px;
+            color: #623ce6;
+            padding: 20px 45px 20px 20px ;
+        }
+        .input_box input::placeholder
+        {
+            color: #61697e;
+        }
+        .input_box i
+        {
+            color: #623ce6;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+        .container .numberforget
+        {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14.5px;
+            margin: -15px 0 15px;
+            color: #623ce6; 
+        }
+        .numberforget label input
+        {
+            accent-color: #623ce6;
+            width: 1em;
+            height: 1em;
+            margin-right: 3px;
+        }
+        .numberforget a
+        {
+            color: #623ce6;
+            text-decoration: none;
+        }
+        .numberforget a:hover
+        {
+            text-decoration: underline;
+        }
+        .container .btn
+        {
+            width: 100%;
+            height: 45px;
+            background-color: #623ce6;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 2px 0 rgba(48, 48, 48, 0.1), 0 4px 4px 0 rgba(48, 48, 48, 0.1);
+            cursor: pointer;
+            font-size: 16px;
+            color: #f0f0f0;
+            font-weight: 600;
+        }
+        .container .regester_link
+        {
+            font-size: 14.5px;
+            text-align: center;
+            margin: 20px 0 15px;
+        }
+        .regester_link p
+        {
+            color: #623ce6;
+
+        }
+        .regester_link p a
+        {
+            color: #623ce6;
+            text-decoration: none;
+            font-weight: 600;
+            font-style: italic;
+        }
+        .regester_link p a:hover
+        {
+            text-decoration: underline;
+        }
+        #loader {
+            width: 5em;
+            height: 5em;
+            border-top: 0.5em solid #623ce6;
+            border-right: 0.5em solid transparent;
+            border-radius: 50%;
+            margin: auto;
+            animation: spiner 1s linear infinite;
+            box-shadow: 0 0 2px 0 rgba(48, 48, 48, 0.1), 0 4px 4px 0 rgba(48, 48, 48, 0.1);
+            box-sizing: unset;
+        }
+        .center {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        .circle
+        {
+            width: 0.5em;
+            height: 0.5em;
+            background-color: #623ce6;
+            border-radius: 50%;
+            margin-left: 4.25em;
+            margin-top: .25em;
+
+        }
+        @keyframes spiner
+        {
+            100% {transform: rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="">
+            <h1>Login</h1>
+            <div class="input_box">
+                <input type="text" placeholder="Username" required>
+                <i class="fa-regular fa-user"></i>
+            </div>
+            <div class="input_box">
+                <input type="password" placeholder="Password" required>
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="numberforget">
+                <label><input type="checkbox" checked>Remmeber me</label>
+                <a href="#">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+            <div class="regester_link">
+                <p>Don't have an account? <a href="SingUp.html">SingUp</a></p>
+            </div>
+        </form>
+        <div id="loader" class="center"><div class="circle"></div></div>
+    </div>
+
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                document.querySelector(
+                    "body").style.visibility = "hidden";
+                document.querySelector(
+                    "#loader").style.visibility = "visible";
+            } else {
+                document.querySelector(
+                    "#loader").style.display = "none";
+                document.querySelector(
+                    "body").style.visibility = "visible";
+            }
+        };
+    </script>
+</body>
+</html>
