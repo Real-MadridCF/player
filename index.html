@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Players</title>
+    <script src="https://kit.fontawesome.com/16c9aedfa1.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Black+Ops+One&family=Luckiest+Guy&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+        .container
+        {
+            height: 100vh;
+            background-color: #f3f5f9;
+            overflow: auto;
+        }
+        .header
+        {
+            height: 3.5em;
+            background-color: #f0f0f0;
+            display: flex;
+            box-shadow: 0 0 2px 0 rgba(48, 48, 48, 0.1), 0 4px 4px 0 rgba(48, 48, 48, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .goalkeeper
+        {
+            width: 100%;
+            height: 24rem;
+            display: flex;
+            overflow: auto;
+
+        }
+        .midflelders
+        {
+            width: 100%;
+            height: 24rem;
+            display: flex;
+            overflow: scroll;
+        }
+        .forwards
+        {
+            width: 100%;
+            height: 24rem;
+            display: flex;
+            overflow: auto;
+
+        }
+        .manager
+        {
+            width: 100%;
+            height: 24rem;
+        }
+        .diffender
+        {
+            width: 100%;
+            height: 24rem;
+            display: flex;
+            overflow: scroll;
+        }
+        .box
+        {
+            width: 14rem;
+            height: 18rem;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            margin: 1rem;
+            cursor: pointer;
+        }
+        .box img
+        {
+            height: 19rem;
+            width: 14rem;
+            border-top-left-radius: 1rem;
+            object-fit: cover;
+            max-height: 100%;
+            background-color: #f0f0f0;
+            box-shadow: 0 0 5px 0 #3030301a, 0 4px 4px 0 rgba(48, 48, 48, 0.1);
+
+        }
+        .inbox
+        {
+            width: 100%;
+            height: 20%;
+            background-color: #632ce6;
+            box-shadow: 0 0 2px 0 #3030301a, 0 4px 4px 0 rgba(48, 48, 48, 0.1);
+            border-bottom-right-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .inbox h3
+        {
+            color: #f3f5f9;
+            font-family: "Merienda", cursive;
+            font-optical-sizing: auto;
+            font-style: normal;
+            margin: 1rem;
+        }   
+        .inbox h1
+        {
+            color: #f3f5f9;
+            margin: 1rem;
+            font-family: "Luckiest Guy", cursive;
+            font-weight: 400;
+            font-style: normal;
+            margin-top: 1rem;
+            padding: 0;
+            margin: 0;
+        }
+        .cont
+        {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            box-shadow: 0 0 5px 0 #3030301a, 0 4px 4px 0 rgba(48, 48, 48, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cont img
+        {
+            width: 2.3rem;
+            height: 2.3rem;
+            border-radius: 50%;
+        }
+        h1
+        {
+            font-family: "Russo One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            margin-left: 1rem;
+            color: #61697e;
+        }
+        .footer
+        {
+            width: 100%;
+            height: 5em;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 0 2px 0 rgba(48, 48, 48, 0.1), 4px 0 4px 0 rgba(48, 48, 48, 0.1);
+
+        }
+        .footer a
+        {
+            width: 2em;
+            height: 2em;
+            background-color: #f0f0f0;
+            padding: 1em;
+            margin: 1em;
+            border-radius: 50%;
+            box-shadow: 0 0 2px 0 rgba(48, 48, 48, 0.1), 0 4px 4px 0 rgba(48, 48, 48, 0.1);
+
+        }
+        .footer i
+        {
+            font-size: 2em;
+            color: #623ce6;
+        }
+        .footer a:hover
+        {
+            background-color: #623ce6;
+        }
+        .footer a:hover i
+        {
+            color: #f0f0f0;
+            transition: 0.5s;
+        }
+        .code
+        {
+            width: 100%;
+            height: 3em;
+            background-color: #623ce6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .code h2
+        {
+            color: #f0f0f0;
+            font-family: "Merienda", cursive;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+        .code span
+        {
+            font-family: "Russo One", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .header a
+        {
+            width: 4em;
+            height: .4em;
+            padding: 1em;
+            border: .1em solid #623ce6;
+            border-radius: .5em;
+            text-decoration: none;
+            color: #623ce6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header h3
+        {
+            font-family: "Merienda", cursive;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
+        .header a:hover
+        {
+            color: #f0f0f0;
+            background-color: #623ce6;
+        }
+        .left
+        {
+            height: 100%;
+            width: 33.5%;
+        }
+        .logo
+        {
+            height: 100%;
+            width: 33.5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .right
+        {
+            height: 100%;
+            width: 33.5%;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            margin-right: 1em;
+        }
+        #loader {
+            width: 5em;
+            height: 5em;
+            border-top: 0.5em solid #623ce6;
+            border-right: 0.5em solid transparent;
+            border-radius: 50%;
+            margin: auto;
+            animation: spiner 1s linear infinite;
+            box-shadow: 0 0 2px 0 rgba(48, 48, 48, 0.1), 0 4px 4px 0 rgba(48, 48, 48, 0.1);
+            box-sizing: unset;
+        }
+        .center {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        .circle
+        {
+            width: 0.5em;
+            height: 0.5em;
+            background-color: #623ce6;
+            border-radius: 50%;
+            margin-left: 4.25em;
+            margin-top: .25em;
+
+        }
+        @keyframes spiner
+        {
+            100% {transform: rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="left"></div>
+            <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg"width="40px"height="50px"/></div>
+            <div class="right"><a href="LogIn.html">
+                <h3>Login</h3>
+                </a></div>
+        </div>
+        <br>
+        <h1 id="tabsare" style="margin-top: 1.5em;">Goalkeeper</h1>
+        <div class="goalkeeper">
+            <div class="box" onclick="Courtois_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--2394d229-13bc-494c-afbb-48ef94a40206/COURTOIS_carita_380x501.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>1</h1><h3>Courtois</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg"></div></div></div>
+            <div class="box" onclick="Lunin_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--42fe343a-4c5c-4c7f-b286-727374ad3bfc/_80X501_LUNIN.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>13</h1><h3>Lunin</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg"></div></div></div>
+            <div class="box" onclick="Kepa_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--b0793d75-241b-4249-ac14-370e68a6a5fb/KEPA_380x501.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>25</h1><h3>Kepa</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg"></div></div></div>   
+        </div>
+        <br>
+        <h1>Diffender</h1>
+        <div class="diffender">
+            <div class="box" onclick="Carvajal_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--a740e082-589b-4f04-ad04-8aaa47b8fb03/_80X501_CARVAJAL.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>2</h1><h3>Carvajal</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg"></div></div></div>
+            <div class="box" onclick="Militão_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--b9abe8ed-2021-411c-84b2-4f15a453c858/_80X501_MILITAO.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>3</h1><h3>E. Militão</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"></div></div></div>
+            <div class="box" onclick="Alaba_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--da3fe7c5-e819-4b32-83d7-d4fabbe3d1aa/_80X501_ALABA.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>4</h1><h3>Alaba</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_Austria.svg"></div></div></div>
+            <div class="box" onclick="Nacho_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--aa46fb6e-29e8-4fbf-bc72-4f4e627ba94d/NACHO_carita_380x501.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>6</h1><h3>Nacho</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg"></div></div></div>
+            <div class="box" onclick="Lucas_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--4b182d2d-d1dc-4749-aedd-b67a1ec3ae0b/_80X501_LUCAS.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>17</h1><h3>Lucas V.</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg"></div></div></div>
+            <div class="box" onclick="García_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--d00752ad-bfd6-43f9-bc95-1483ce215642/_80X501_FRAN_GARCIA.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>20</h1><h3>García</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg"></div></div></div>
+            <div class="box" onclick="Rüdiger_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--c47b32e2-7efd-43cb-aec1-e1303ff8eb64/_80X501_RUDIGER.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>22</h1><h3>Rüdiger</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Germany_%283-2%29.svg"></div></div></div>
+            <div class="box" onclick="Mendy_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--24e5954f-68c8-4f84-8710-f4bb5759cb06/_80X501_MENDY.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>23</h1><h3>F.Mendy</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Flag_of_France_%282020%E2%80%93present%29.svg"></div></div></div>
+        </div>
+        <br>
+        <h1>Midflelders</h1>
+        <div class="midflelders">
+            <div class="box" onclick="Bellingham_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--0a9e21fb-3646-411f-abed-b372915ed2fe/_80X501_BELLINGHAM.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>5</h1><h3>Bellingham</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg"></div></div></div>
+            <div class="box" onclick="Kroos_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--77e1186a-871f-4b70-83dd-2e6fb24c908f/_80X501_KROOS.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>8</h1><h3>Kroos</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Flag_of_Germany_%283-2%29.svg"></div></div></div>
+            <div class="box" onclick="Modrić_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--d2dead4a-81e1-4bfb-81fd-748c72bd20b3/_80X501_MODRIC.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>10</h1><h3>Modrić</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Flag_of_Croatia.svg"></div></div></div>
+            <div class="box" onclick="Camavinga_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--6440de95-460a-48cf-a39d-69242abaf01d/_80X501_CAMAVINGA.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>12</h1><h3>Camavinga</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Flag_of_France_%282020%E2%80%93present%29.svg"></div></div></div>
+            <div class="box" onclick="Valverde_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--dec8ffe6-da1d-4cc9-95c1-3e4e6dfd5a21/_80X501_VALVERDE.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>15</h1><h3>Valverde</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Uruguay.svg"></div></div></div>
+            <div class="box" onclick="Tchouaméni_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--7c5b8c36-f82b-4c87-9f76-8e9b6f0b8881/_80X501_TCHOUAMENI.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>18</h1><h3>Tchouaméni</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Flag_of_France_%282020%E2%80%93present%29.svg"></div></div></div>
+            <div class="box" onclick="Ceballos_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--a3fdbbfa-249f-4890-9c64-7d76d2c00796/_80X501_CEBALLOS.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>19</h1><h3>D. Ceballos</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg"></div></div></div>
+            <div class="box" onclick="Güler_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--73e777cf-a12f-4373-ba9f-daac7928f328/_80X501_GULER.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>24</h1><h3>Arda Güler</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg"></div></div></div>
+        </div>
+        <br>
+        <h1>Forwards</h1>
+        <div class="forwards">
+            <div class="box" onclick="Vini_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--07308c80-aaac-4856-9e12-9f045a794eed/_80X501_VINI.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>7</h1><h3>Vini Jr.</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"></div></div></div>
+            <div class="box" onclick="Rodrygo_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--36f93fe4-f8fa-409c-bafe-c39edc38ca46/_80X501_RODRYGO.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>11</h1><h3>Rodrygo</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"></div></div></div>
+            <div class="box" onclick="Joselu_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--0cabe63f-21c0-4568-8aa3-54cc30aa1650/_80X501_JOSELU.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>14</h1><h3>Joselu</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg"></div></div></div>
+            <div class="box" onclick="Brahim_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--ef325587-3a42-4be7-8ff4-8465c3a994b6/_80X501_BRAHIM.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h1>21</h1><h3>Brahim</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Flag_of_Morocco_%28large_stroke%29.svg"></div></div></div>
+
+        </div>
+        <br>
+        <h1>Manager</h1>
+        <div class="manager">
+            <div class="box"  onclick="Ancelotti_click()"><img src="https://publish-p47754-e237306.adobeaemcloud.com/adobe/dynamicmedia/deliver/dm-aid--c225f3fe-237f-4aea-a2f0-4dfcf71b1830/ancelotti_carita_380x501.app.png?preferwebp=true&width=288&height=384"><div class="inbox"><h3>Carlo Ancelotti</h3><div class="cont"> <img src="https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg"></div></div></div>
+
+        </div>
+        <div class="footer">
+            <a href="#">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#">
+                <i class="fa-brands fa-telegram"></i>
+            </a>
+            
+        </div>
+        <div class="code">
+            <h2>Coded By : <span>Michael Rocky</span></h2>
+        </div>
+        <div id="loader" class="center"><div class="circle"></div></div>
+
+        <script>
+            document.onreadystatechange = function () {
+                if (document.readyState !== "complete") {
+                    document.querySelector(
+                        "body").style.visibility = "hidden";
+                    document.querySelector(
+                        "#loader").style.visibility = "visible";
+                } else {
+                    document.querySelector(
+                        "#loader").style.display = "none";
+                    document.querySelector(
+                        "body").style.visibility = "visible";
+                }
+            };
+
+            
+            function Courtois_click() {
+            window.location.href = "Infomation_COURTOIS.html";
+            };
+            function Lunin_click() {
+            window.location.href = "Infomation_Lunin.html";
+            };
+            function Kepa_click() {
+            window.location.href = "Infomation_Kepa.html";
+            };
+            function Carvajal_click() {
+            window.location.href = "Infomation_Carvajal.html";
+            };
+            function Militão_click() {
+            window.location.href = "Infomation_Militão.html";
+            };
+            function Alaba_click() {
+            window.location.href = "Infomation_Alaba.html";
+            };
+            function Nacho_click() {
+            window.location.href = "Infomation_Nacho.html";
+            };
+            function Lucas_click() {
+            window.location.href = "Infomation_Lucas.html";
+            };
+            function García_click() {
+            window.location.href = "Infomation_García.html";
+            };
+            function Rüdiger_click() {
+            window.location.href = "Infomation_Rüdiger.html";
+            };
+            function Mendy_click() {
+            window.location.href = "Infomation_Mendy.html";
+            };
+            function Bellingham_click() {
+            window.location.href = "Infomation_Bellingham.html";
+            };
+            function Kroos_click() {
+            window.location.href = "Infomation_Kroos.html";
+            };
+            function Modrić_click() {
+            window.location.href = "Infomation_Modrić.html";
+            };
+            function Camavinga_click() {
+            window.location.href = "Infomation_Camavinga.html";
+            };
+            function Valverde_click() {
+            window.location.href = "Infomation_Valverde.html";
+            };
+            function Tchouaméni_click() {
+            window.location.href = "Infomation_Tchouaméni.html";
+            };
+            function Ceballos_click() {
+            window.location.href = "Infomation_Ceballos.html";
+            };
+            function Güler_click() {
+            window.location.href = "Infomation_Güler.html";
+            };
+            function Vini_click() {
+            window.location.href = "Infomation_Vini.html";
+            };
+            function Rodrygo_click() {
+            window.location.href = "Infomation_Rodrygo.html";
+            };
+            function Joselu_click() {
+            window.location.href = "Infomation_Joselu.html";
+            };
+            function Brahim_click() {
+            window.location.href = "Infomation_Brahim.html";
+            };
+            function Ancelotti_click() {
+            window.location.href = "Infomation_Ancelotti.html";
+            };
+        </script>
+    </div>
+</body>
+</html>
